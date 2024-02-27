@@ -1,14 +1,30 @@
+"""This module to find the route between two cities using Uniform-Cost and A* Search algorithms.
+
+Functions:
+    - parse_road_system
+    - parse_heuristic
+    - uninformed_search
+    - informed_search
+"""
+
 import sys
 
 from pathlib import Path
 from queue import PriorityQueue
 
 
-# Step 1: Parsing Input Data
-def parse_road_system(filename: Path) -> dict:
+__all__ = ["informed_search", "parse_heuristic", "parse_road_system", "uninformed_search"]
+__author__ = "Gavin Meyer"
+
+
+def parse_road_system(filename: Path) -> dict[str, str, float]:
     """Parses the road system data from the given file.
 
-    Returns a graph representing the road connections.
+    Args:
+        filename: The file containing the road system data.
+
+    Returns:
+        dict: A dictionary representing the road connections.
     """
     graph = {}
     with Path.open(filename, encoding="locale") as file:
@@ -30,7 +46,14 @@ def parse_road_system(filename: Path) -> dict:
 
 
 def parse_heuristic(heuristic_file: Path) -> dict[str, float]:
-    """Parses the heuristic file and returns a dictionary of heuristic values for each city."""
+    """Parses the heuristic file and returns a dictionary of heuristic values for each city.
+
+    Args:
+        heuristic_file: The file containing the heuristic values.
+
+    Returns:
+        dict: A dictionary of heuristic values for each city.
+    """
     heuristic = {}
     with Path.open(heuristic_file) as file:
         for line in file:
@@ -43,12 +66,20 @@ def parse_heuristic(heuristic_file: Path) -> dict[str, float]:
     return heuristic
 
 
-# Implementing Uninformed Search (Uniform-Cost Search)
-def uninformed_search(graph: dict, origin: str, destination: str):
-    """Performs an uninformed search (Uniform-Cost Search) in the graph from origin to destination.
+def uninformed_search(
+    graph: dict[str, str, float], origin: str, destination: str
+) -> tuple[int, int, int, float, list]:
+    """Performs Uniform-Cost Search in the graph from origin to destination.
 
-    Returns the path found along with the total distance, nodes popped, expanded, and generated.
+    Args:
+        graph: A dictionary representing the road connections.
+        origin: The starting city.
+        destination: The destination city.
+
+    Returns:
+        tuple: Tuple containing the number of nodes popped, expanded, generated, distance, and path.
     """
+    print("Uninformed_search")
     # Priority Queue to hold (cumulative_cost, current_city, path_so_far)
     frontier = PriorityQueue()
     frontier.put((0, origin, []))
@@ -57,7 +88,9 @@ def uninformed_search(graph: dict, origin: str, destination: str):
     explored = set()
 
     # Variables to track nodes popped, expanded, and generated
-    nodes_popped, nodes_expanded, nodes_generated = 0, 0, 0
+    nodes_popped: int = 0
+    nodes_expanded: int = 0
+    nodes_generated: int = 0
 
     while not frontier.empty():
         nodes_popped += 1
@@ -81,12 +114,21 @@ def uninformed_search(graph: dict, origin: str, destination: str):
     return nodes_popped, nodes_expanded, nodes_generated, float("inf"), None  # No path found
 
 
-# Implementing Informed Search (A* Search)
-def informed_search(graph: dict, origin: str, destination: str, heuristic: dict[str, float]):
-    """Performs an informed search (A* Search) in the graph from origin to destination using the provided heuristic.
+def informed_search(
+    graph: dict[str, str, float], origin: str, destination: str, heuristic: dict[str, float]
+) -> tuple[int, int, int, float, list]:
+    """Performs A* Search in the graph from origin to destination using the provided heuristic.
 
-    Returns the path found along with the total distance, nodes popped, expanded, and generated.
+    Args:
+        graph: A dictionary representing the road connections.
+        origin: The starting city.
+        destination: The destination city.
+        heuristic: A dictionary of heuristic values for each city.
+
+    Returns:
+        tuple: Tuple containing the number of nodes popped, expanded, generated, distance, and path.
     """
+    print("Informed Search")
     # Priority Queue to hold (estimated_total_cost, current_cost, current_city, path_so_far)
     frontier = PriorityQueue()
     frontier.put((heuristic.get(origin, float("inf")), 0, origin, []))
@@ -95,7 +137,9 @@ def informed_search(graph: dict, origin: str, destination: str, heuristic: dict[
     explored = set()
 
     # Variables to track nodes popped, expanded, and generated
-    nodes_popped, nodes_expanded, nodes_generated = 0, 0, 0
+    nodes_popped: int = 0
+    nodes_expanded: int = 0
+    nodes_generated: int = 0
 
     while not frontier.empty():
         nodes_popped += 1
@@ -120,14 +164,13 @@ def informed_search(graph: dict, origin: str, destination: str, heuristic: dict[
     return nodes_popped, nodes_expanded, nodes_generated, float("inf"), None  # No path found
 
 
-# function to integrate search algorithms and format the output
-def find_route() -> None:
+def main() -> None:
     """Main function to find the route based on command line arguments.
 
     Performs either uninformed or informed search and prints the output.
     """
     if len(sys.argv) not in {4, 5}:
-        print("Invalid number of arguments.")
+        sys.stdout.write("Invalid number of arguments.\n")
         return
 
     input_filename = sys.argv[1]
@@ -135,7 +178,6 @@ def find_route() -> None:
     destination_city = sys.argv[3]
     heuristic_filename = sys.argv[4] if len(sys.argv) == 5 else None
 
-    # Parse the road system from the input file
     graph = parse_road_system(input_filename)
 
     # Execute the appropriate search and capture the output
@@ -149,23 +191,18 @@ def find_route() -> None:
             graph, origin_city, destination_city
         )
 
-    # Formatting and printing the output
-    print("Nodes Popped:", nodes_popped)
-    print("Nodes Expanded:", nodes_expanded)
-    print("Nodes Generated:", nodes_generated)
+    sys.stdout.write("Nodes Popped: " + str(nodes_popped) + "\n")
+    sys.stdout.write("Nodes Expanded: " + str(nodes_expanded) + "\n")
+    sys.stdout.write("Nodes Generated: " + str(nodes_generated) + "\n")
 
     if path is not None:
-        print(f"Distance: {distance:.1f} km")
-        print("Route:")
+        sys.stdout.write(f"Distance: {distance:.1f} km\n")
+        sys.stdout.write("Route: \n")
         for city1, city2, dist in path:
-            print(f"{city1} to {city2}, {dist:.1f} km")
+            sys.stdout.write(f"{city1} to {city2}, {dist:.1f} km\n")
     else:
-        print("Distance: infinity")
-        print("Route:\nNone")
-
-
-def main() -> None:
-    find_route()
+        sys.stdout.write("Distance: infinity\n")
+        sys.stdout.write("Route:\nNone\n")
 
 
 if __name__ == "__main__":

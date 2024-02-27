@@ -1,0 +1,50 @@
+
+Arguments : ['input1.txt', 'Bremen', 'Kassel', 'h_kassel.txt']
+
+Informed Search selected
+
+Nodes Popped: 0
+Nodes Expanded: 0
+Nodes Generated: 1
+Fringe:
+	< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >
+Closed:
+	[]
+
+Popping Node 1: < state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >
+Generating successors to Bremen
+Nodes Popped: 1
+Nodes Expanded: 1
+Nodes Generated: 4
+Fringe:
+	< state = Hannover g(n) = 132.0, d = 1, f(n) = 232.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >
+	< state = Hamburg g(n) = 116.0, d = 1, f(n) = 316.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >
+	< state = Dortmund g(n) = 234.0, d = 1, f(n) = 334.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >
+Closed:
+	['Bremen']
+
+Popping Node 2: < state = Hannover g(n) = 132.0, d = 1, f(n) = 232.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >
+Generating successors to Hannover
+Nodes Popped: 2
+Nodes Expanded: 2
+Nodes Generated: 8
+Fringe:
+	< state = Kassel g(n) = 297.0, d = 2, f(n) = 297.0, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, f(n) = 232.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >} >
+	< state = Hamburg g(n) = 116.0, d = 1, f(n) = 316.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >
+	< state = Dortmund g(n) = 234.0, d = 1, f(n) = 334.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >
+	< state = Magdeburg g(n) = 280.0, d = 2, f(n) = 380.0, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, f(n) = 232.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >} >
+	< state = Bremen g(n) = 264.0, d = 2, f(n) = 464.0, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, f(n) = 232.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >} >
+	< state = Hamburg g(n) = 285.0, d = 2, f(n) = 485.0, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, f(n) = 232.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hannover']
+
+Popping Node 3: < state = Kassel g(n) = 297.0, d = 2, f(n) = 297.0, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, f(n) = 232.0, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, f(n) = 200.0, Parent = Pointer to {None} >} >} >
+Goal Found. Generating Output
+
+Nodes Popped: 3
+Nodes Expanded: 2
+Nodes Generated: 8
+Distance: 297.0 km
+Route:
+Bremen to Hannover, 132.0 km
+Hannover to Kassel, 165.0 km

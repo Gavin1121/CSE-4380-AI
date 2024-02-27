@@ -1,0 +1,214 @@
+
+Arguments : ['input1.txt', 'Bremen', 'Kassel']
+
+Uninformed Search selected
+
+Nodes Popped: 0
+Nodes Expanded: 0
+Nodes Generated: 1
+Fringe:
+	< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >
+Closed:
+	[]
+
+Popping Node 1: < state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >
+Generating successors to Bremen
+Nodes Popped: 1
+Nodes Expanded: 1
+Nodes Generated: 4
+Fringe:
+	< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+	< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+	< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+Closed:
+	['Bremen']
+
+Popping Node 2: < state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+Generating successors to Hamburg
+Nodes Popped: 2
+Nodes Expanded: 2
+Nodes Generated: 8
+Fringe:
+	< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+	< state = Luebeck g(n) = 179.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Bremen g(n) = 232.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+	< state = Hannover g(n) = 269.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Berlin g(n) = 407.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hamburg']
+
+Popping Node 3: < state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+Generating successors to Hannover
+Nodes Popped: 3
+Nodes Expanded: 3
+Nodes Generated: 12
+Fringe:
+	< state = Luebeck g(n) = 179.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Bremen g(n) = 232.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+	< state = Bremen g(n) = 264.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hannover g(n) = 269.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hamburg g(n) = 285.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Kassel g(n) = 297.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Berlin g(n) = 407.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hamburg', 'Hannover']
+
+Popping Node 4: < state = Luebeck g(n) = 179.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Generating successors to Luebeck
+Nodes Popped: 4
+Nodes Expanded: 4
+Nodes Generated: 13
+Fringe:
+	< state = Bremen g(n) = 232.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+	< state = Hamburg g(n) = 242.0, d = 3, Parent = Pointer to {< state = Luebeck g(n) = 179.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >} >
+	< state = Bremen g(n) = 264.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hannover g(n) = 269.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hamburg g(n) = 285.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Kassel g(n) = 297.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Berlin g(n) = 407.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hamburg', 'Hannover', 'Luebeck']
+
+Popping Node 5: < state = Bremen g(n) = 232.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Generating successors to Bremen. Bremen is already in closed so 0 successors
+Nodes Popped: 5
+Nodes Expanded: 4
+Nodes Generated: 13
+Fringe:
+	< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+	< state = Hamburg g(n) = 242.0, d = 3, Parent = Pointer to {< state = Luebeck g(n) = 179.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >} >
+	< state = Bremen g(n) = 264.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hannover g(n) = 269.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hamburg g(n) = 285.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Kassel g(n) = 297.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Berlin g(n) = 407.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hamburg', 'Hannover', 'Luebeck']
+
+Popping Node 6: < state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >
+Generating successors to Dortmund
+Nodes Popped: 6
+Nodes Expanded: 5
+Nodes Generated: 17
+Fringe:
+	< state = Hamburg g(n) = 242.0, d = 3, Parent = Pointer to {< state = Luebeck g(n) = 179.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >} >
+	< state = Bremen g(n) = 264.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hannover g(n) = 269.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hamburg g(n) = 285.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Kassel g(n) = 297.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Duesseldorf g(n) = 303.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Berlin g(n) = 407.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Frankfurt g(n) = 455.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Bremen g(n) = 468.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Saarbruecken g(n) = 584.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hamburg', 'Hannover', 'Luebeck', 'Dortmund']
+
+Popping Node 7: < state = Hamburg g(n) = 242.0, d = 3, Parent = Pointer to {< state = Luebeck g(n) = 179.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >} >
+Generating successors to Hamburg. Hamburg is already in closed so 0 successors
+Nodes Popped: 7
+Nodes Expanded: 5
+Nodes Generated: 17
+Fringe:
+	< state = Bremen g(n) = 264.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hannover g(n) = 269.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hamburg g(n) = 285.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Kassel g(n) = 297.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Duesseldorf g(n) = 303.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Berlin g(n) = 407.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Frankfurt g(n) = 455.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Bremen g(n) = 468.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Saarbruecken g(n) = 584.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hamburg', 'Hannover', 'Luebeck', 'Dortmund']
+
+Popping Node 8: < state = Bremen g(n) = 264.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Generating successors to Bremen. Bremen is already in closed so 0 successors
+Nodes Popped: 8
+Nodes Expanded: 5
+Nodes Generated: 17
+Fringe:
+	< state = Hannover g(n) = 269.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hamburg g(n) = 285.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Kassel g(n) = 297.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Duesseldorf g(n) = 303.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Berlin g(n) = 407.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Frankfurt g(n) = 455.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Bremen g(n) = 468.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Saarbruecken g(n) = 584.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hamburg', 'Hannover', 'Luebeck', 'Dortmund']
+
+Popping Node 9: < state = Hannover g(n) = 269.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Generating successors to Hannover. Hannover is already in closed so 0 successors
+Nodes Popped: 9
+Nodes Expanded: 5
+Nodes Generated: 17
+Fringe:
+	< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hamburg g(n) = 285.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Kassel g(n) = 297.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Duesseldorf g(n) = 303.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Berlin g(n) = 407.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Frankfurt g(n) = 455.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Bremen g(n) = 468.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Saarbruecken g(n) = 584.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hamburg', 'Hannover', 'Luebeck', 'Dortmund']
+
+Popping Node 10: < state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Generating successors to Magdeburg
+Nodes Popped: 10
+Nodes Expanded: 6
+Nodes Generated: 20
+Fringe:
+	< state = Hamburg g(n) = 285.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Kassel g(n) = 297.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Duesseldorf g(n) = 303.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Leipzig g(n) = 405.0, d = 3, Parent = Pointer to {< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >} >
+	< state = Berlin g(n) = 407.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hannover g(n) = 428.0, d = 3, Parent = Pointer to {< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >} >
+	< state = Berlin g(n) = 446.0, d = 3, Parent = Pointer to {< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >} >
+	< state = Frankfurt g(n) = 455.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Bremen g(n) = 468.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Saarbruecken g(n) = 584.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hamburg', 'Hannover', 'Luebeck', 'Dortmund', 'Magdeburg']
+
+Popping Node 11: < state = Hamburg g(n) = 285.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Generating successors to Hamburg. Hamburg is already in closed so 0 successors
+Nodes Popped: 11
+Nodes Expanded: 6
+Nodes Generated: 20
+Fringe:
+	< state = Kassel g(n) = 297.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Duesseldorf g(n) = 303.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Leipzig g(n) = 405.0, d = 3, Parent = Pointer to {< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >} >
+	< state = Berlin g(n) = 407.0, d = 2, Parent = Pointer to {< state = Hamburg g(n) = 116.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Hannover g(n) = 428.0, d = 3, Parent = Pointer to {< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >} >
+	< state = Berlin g(n) = 446.0, d = 3, Parent = Pointer to {< state = Magdeburg g(n) = 280.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >} >
+	< state = Frankfurt g(n) = 455.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Bremen g(n) = 468.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+	< state = Saarbruecken g(n) = 584.0, d = 2, Parent = Pointer to {< state = Dortmund g(n) = 234.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Closed:
+	['Bremen', 'Hamburg', 'Hannover', 'Luebeck', 'Dortmund', 'Magdeburg']
+
+Popping Node 12: < state = Kassel g(n) = 297.0, d = 2, Parent = Pointer to {< state = Hannover g(n) = 132.0, d = 1, Parent = Pointer to {< state = Bremen g(n) = 0, d = 0, Parent = Pointer to {None} >} >} >
+Goal Found. Generating Output
+
+Nodes Popped: 12
+Nodes Expanded: 6
+Nodes Generated: 20
+Distance: 297.0 km
+Route:
+Bremen to Hannover, 132.0 km
+Hannover to Kassel, 165.0 km

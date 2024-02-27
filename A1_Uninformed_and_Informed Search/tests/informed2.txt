@@ -1,0 +1,95 @@
+
+Arguments : ['input1.txt', 'London', 'Kassel', 'h_kassel.txt']
+
+Informed Search selected
+
+Nodes Popped: 0
+Nodes Expanded: 0
+Nodes Generated: 1
+Fringe:
+	< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >
+Closed:
+	[]
+
+Popping Node 1: < state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >
+Generating successors to London
+Nodes Popped: 1
+Nodes Expanded: 1
+Nodes Generated: 2
+Fringe:
+	< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >
+Closed:
+	['London']
+
+Popping Node 2: < state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >
+Generating successors to Birmingham
+Nodes Popped: 2
+Nodes Expanded: 2
+Nodes Generated: 5
+Fringe:
+	< state = London g(n) = 234.0, d = 2, f(n) = 534.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >
+	< state = Bristol g(n) = 202.0, d = 2, f(n) = 602.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >
+	< state = Manchester g(n) = 201.0, d = 2, f(n) = 701.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >
+Closed:
+	['London', 'Birmingham']
+
+Popping Node 3: < state = London g(n) = 234.0, d = 2, f(n) = 534.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >
+Generating successors to London. London is already in closed so 0 successors
+Nodes Popped: 3
+Nodes Expanded: 2
+Nodes Generated: 5
+Fringe:
+	< state = Bristol g(n) = 202.0, d = 2, f(n) = 602.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >
+	< state = Manchester g(n) = 201.0, d = 2, f(n) = 701.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >
+Closed:
+	['London', 'Birmingham']
+
+Popping Node 4: < state = Bristol g(n) = 202.0, d = 2, f(n) = 602.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >
+Generating successors to Bristol
+Nodes Popped: 4
+Nodes Expanded: 3
+Nodes Generated: 6
+Fringe:
+	< state = Birmingham g(n) = 287.0, d = 3, f(n) = 687.0, Parent = Pointer to {< state = Bristol g(n) = 202.0, d = 2, f(n) = 602.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >} >
+	< state = Manchester g(n) = 201.0, d = 2, f(n) = 701.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >
+Closed:
+	['London', 'Birmingham', 'Bristol']
+
+Popping Node 5: < state = Birmingham g(n) = 287.0, d = 3, f(n) = 687.0, Parent = Pointer to {< state = Bristol g(n) = 202.0, d = 2, f(n) = 602.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >} >
+Generating successors to Birmingham. Birmingham is already in closed so 0 successors
+Nodes Popped: 5
+Nodes Expanded: 3
+Nodes Generated: 6
+Fringe:
+	< state = Manchester g(n) = 201.0, d = 2, f(n) = 701.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >
+Closed:
+	['London', 'Birmingham', 'Bristol']
+
+Popping Node 6: < state = Manchester g(n) = 201.0, d = 2, f(n) = 701.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >
+Generating successors to Manchester
+Nodes Popped: 6
+Nodes Expanded: 4
+Nodes Generated: 7
+Fringe:
+	< state = Birmingham g(n) = 285.0, d = 3, f(n) = 685.0, Parent = Pointer to {< state = Manchester g(n) = 201.0, d = 2, f(n) = 701.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >} >
+Closed:
+	['London', 'Birmingham', 'Bristol', 'Manchester']
+
+Popping Node 7: < state = Birmingham g(n) = 285.0, d = 3, f(n) = 685.0, Parent = Pointer to {< state = Manchester g(n) = 201.0, d = 2, f(n) = 701.0, Parent = Pointer to {< state = Birmingham g(n) = 117.0, d = 1, f(n) = 517.0, Parent = Pointer to {< state = London g(n) = 0, d = 0, f(n) = 300.0, Parent = Pointer to {None} >} >} >} >
+Generating successors to Birmingham. Birmingham is already in closed so 0 successors
+Nodes Popped: 7
+Nodes Expanded: 4
+Nodes Generated: 7
+Fringe:
+	Empty
+Closed:
+	['London', 'Birmingham', 'Bristol', 'Manchester']
+
+Fringe Empty. Goal Not Found. Generating Output
+
+Nodes Popped: 7
+Nodes Expanded: 4
+Nodes Generated: 7
+Distance: Infinity
+Route:
+None
