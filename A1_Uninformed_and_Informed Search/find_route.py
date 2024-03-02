@@ -17,7 +17,7 @@ __all__ = ["informed_search", "parse_heuristic", "parse_road_system", "uninforme
 __author__ = "Gavin Meyer"
 
 
-def parse_road_system(filename: Path) -> dict[str, str, float]:
+def parse_road_system(filename: Path) -> dict[str, dict[str, float]]:
     """Parses the road system data from the given file.
 
     Args:
@@ -26,7 +26,7 @@ def parse_road_system(filename: Path) -> dict[str, str, float]:
     Returns:
         dict: A dictionary representing the road connections.
     """
-    graph = {}
+    graph: dict[str, dict[str, float]] = {}
     with Path.open(filename, encoding="locale") as file:
         for line in file:
             if line.strip() == "END OF INPUT":
@@ -68,8 +68,8 @@ def parse_heuristic(heuristic_file: Path) -> dict[str, float]:
 
 
 def uninformed_search(
-    graph: dict[str, str, float], origin: str, destination: str
-) -> tuple[int, int, int, float, list]:
+    graph: dict[str, dict[str, float]], origin: str, destination: str
+) -> tuple[int, int, int, float, list[tuple[str, str, float]] | None]:
     """Performs Uniform-Cost Search in the graph from origin to destination.
 
     Args:
@@ -80,9 +80,9 @@ def uninformed_search(
     Returns:
         tuple: Tuple containing the number of nodes popped, expanded, generated, distance, and path.
     """
-    print("Uninformed Search")
+    sys.stdout.write("Uninformed Search\n")
     # Priority Queue to hold (cumulative cost, current city, path)
-    frontier = PriorityQueue()
+    frontier: PriorityQueue[tuple[float, str, list[tuple[str, str, float]]]] = PriorityQueue()
     frontier.put((0, origin, []))
 
     # Set to keep track of explored cities
@@ -119,8 +119,8 @@ def uninformed_search(
 
 
 def informed_search(
-    graph: dict[str, str, float], origin: str, destination: str, heuristic: dict[str, float]
-) -> tuple[int, int, int, float, list]:
+    graph: dict[str, dict[str, float]], origin: str, destination: str, heuristic: dict[str, float]
+) -> tuple[int, int, int, float, list[tuple[str, str, float]] | None]:
     """Performs A* Search in the graph from origin to destination using the provided heuristic.
 
     Args:
@@ -132,9 +132,11 @@ def informed_search(
     Returns:
         tuple: Tuple containing the number of nodes popped, expanded, generated, distance, and path.
     """
-    print("Informed Search")
+    sys.stdout.write("Informed Search\n")
     # Priority Queue to hold (estimated total cost, current cost, current city, path)
-    frontier = PriorityQueue()
+    frontier: PriorityQueue[
+        tuple[float, float, str, list[tuple[str, str, float]]]
+    ] = PriorityQueue()
     frontier.put((heuristic.get(origin, float("inf")), 0, origin, []))
 
     # Set to keep track of explored cities
@@ -187,11 +189,11 @@ def main() -> None:
     destination_city = sys.argv[3]
     heuristic_filename = sys.argv[4] if len(sys.argv) == 5 else None
 
-    graph = parse_road_system(input_filename)
+    graph = parse_road_system(Path(input_filename))
 
     # Execute the appropriate search and capture output
     if heuristic_filename:
-        heuristic = parse_heuristic(heuristic_filename)
+        heuristic = parse_heuristic(Path(heuristic_filename))
         nodes_popped, nodes_expanded, nodes_generated, distance, path = informed_search(
             graph, origin_city, destination_city, heuristic
         )
