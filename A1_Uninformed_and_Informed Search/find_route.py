@@ -11,6 +11,7 @@ import sys
 
 from pathlib import Path
 from queue import PriorityQueue
+from typing import Final
 
 
 __all__ = ["informed_search", "parse_heuristic", "parse_road_system", "uninformed_search"]
@@ -178,6 +179,8 @@ def main() -> None:
 
     Performs either uninformed or informed search and prints the output.
     """
+    max_args: Final[int] = 5
+
     # Check for valid number of arguments
     if len(sys.argv) not in {4, 5}:
         sys.stdout.write("Invalid number of arguments.\n")
@@ -187,7 +190,7 @@ def main() -> None:
     input_filename = sys.argv[1]
     origin_city = sys.argv[2]
     destination_city = sys.argv[3]
-    heuristic_filename = sys.argv[4] if len(sys.argv) == 5 else None
+    heuristic_filename = sys.argv[4] if len(sys.argv) == max_args else None
 
     graph = parse_road_system(Path(input_filename))
 
