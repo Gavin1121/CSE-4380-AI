@@ -1,4 +1,4 @@
-"""This module to find the route between two cities using Uniform-Cost and A* Search algorithms.
+"""Module to find the route between two cities using Uniform-Cost and A* Search algorithms.
 
 Functions:
     - parse_road_system
@@ -39,8 +39,9 @@ def parse_road_system(filename: Path) -> dict[str, str, float]:
             if city2 not in graph:
                 graph[city2] = {}
 
+            # Assuming bi-directional roads
             graph[city1][city2] = distance
-            graph[city2][city1] = distance  # Assuming bidirectional roads
+            graph[city2][city1] = distance
 
     return graph
 
@@ -79,8 +80,8 @@ def uninformed_search(
     Returns:
         tuple: Tuple containing the number of nodes popped, expanded, generated, distance, and path.
     """
-    print("Uninformed_search")
-    # Priority Queue to hold (cumulative_cost, current_city, path_so_far)
+    print("Uninformed Search")
+    # Priority Queue to hold (cumulative cost, current city, path)
     frontier = PriorityQueue()
     frontier.put((0, origin, []))
 
@@ -100,18 +101,21 @@ def uninformed_search(
         if current_city == destination:
             return nodes_popped, nodes_expanded, nodes_generated, current_cost, path
 
+        # If the current city has not been explored, add it to the explored set
         if current_city not in explored:
             explored.add(current_city)
             nodes_expanded += 1
 
+            # For each neighbor of the current city, add to the frontier
             for neighbor, distance in graph[current_city].items():
+                nodes_generated += 1
                 if neighbor not in explored:
                     new_cost = current_cost + distance
                     new_path = [*path, (current_city, neighbor, distance)]
                     frontier.put((new_cost, neighbor, new_path))
-                    nodes_generated += 1
 
-    return nodes_popped, nodes_expanded, nodes_generated, float("inf"), None  # No path found
+    # No path found
+    return nodes_popped, nodes_expanded, nodes_generated, float("inf"), None
 
 
 def informed_search(
@@ -129,7 +133,7 @@ def informed_search(
         tuple: Tuple containing the number of nodes popped, expanded, generated, distance, and path.
     """
     print("Informed Search")
-    # Priority Queue to hold (estimated_total_cost, current_cost, current_city, path_so_far)
+    # Priority Queue to hold (estimated total cost, current cost, current city, path)
     frontier = PriorityQueue()
     frontier.put((heuristic.get(origin, float("inf")), 0, origin, []))
 
@@ -149,19 +153,22 @@ def informed_search(
         if current_city == destination:
             return nodes_popped, nodes_expanded, nodes_generated, current_cost, path
 
+        # If the current city has not been explored, add it to the explored set
         if current_city not in explored:
             explored.add(current_city)
             nodes_expanded += 1
 
+            # For each neighbor of the current city, estimate the total cost & add to the frontier
             for neighbor, distance in graph[current_city].items():
+                nodes_generated += 1
                 if neighbor not in explored:
                     new_cost = current_cost + distance
                     estimated_total = new_cost + heuristic.get(neighbor, float("inf"))
                     new_path = [*path, (current_city, neighbor, distance)]
                     frontier.put((estimated_total, new_cost, neighbor, new_path))
-                    nodes_generated += 1
 
-    return nodes_popped, nodes_expanded, nodes_generated, float("inf"), None  # No path found
+    # No path found
+    return nodes_popped, nodes_expanded, nodes_generated, float("inf"), None
 
 
 def main() -> None:
@@ -169,10 +176,12 @@ def main() -> None:
 
     Performs either uninformed or informed search and prints the output.
     """
+    # Check for valid number of arguments
     if len(sys.argv) not in {4, 5}:
         sys.stdout.write("Invalid number of arguments.\n")
         return
 
+    # Parse command line arguments
     input_filename = sys.argv[1]
     origin_city = sys.argv[2]
     destination_city = sys.argv[3]
@@ -180,7 +189,7 @@ def main() -> None:
 
     graph = parse_road_system(input_filename)
 
-    # Execute the appropriate search and capture the output
+    # Execute the appropriate search and capture output
     if heuristic_filename:
         heuristic = parse_heuristic(heuristic_filename)
         nodes_popped, nodes_expanded, nodes_generated, distance, path = informed_search(
@@ -191,6 +200,7 @@ def main() -> None:
             graph, origin_city, destination_city
         )
 
+    # Print the output
     sys.stdout.write("Nodes Popped: " + str(nodes_popped) + "\n")
     sys.stdout.write("Nodes Expanded: " + str(nodes_expanded) + "\n")
     sys.stdout.write("Nodes Generated: " + str(nodes_generated) + "\n")
@@ -201,7 +211,7 @@ def main() -> None:
         for city1, city2, dist in path:
             sys.stdout.write(f"{city1} to {city2}, {dist:.1f} km\n")
     else:
-        sys.stdout.write("Distance: infinity\n")
+        sys.stdout.write("Distance: Infinity\n")
         sys.stdout.write("Route:\nNone\n")
 
 
