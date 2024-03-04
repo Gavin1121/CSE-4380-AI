@@ -135,9 +135,9 @@ def informed_search(
     """
     sys.stdout.write("Informed Search\n")
     # Priority Queue to hold (estimated total cost, current cost, current city, path)
-    frontier: PriorityQueue[
-        tuple[float, float, str, list[tuple[str, str, float]]]
-    ] = PriorityQueue()
+    frontier: PriorityQueue[tuple[float, float, str, list[tuple[str, str, float]]]] = (
+        PriorityQueue()
+    )
     frontier.put((heuristic.get(origin, float("inf")), 0, origin, []))
 
     # Set to keep track of explored cities
