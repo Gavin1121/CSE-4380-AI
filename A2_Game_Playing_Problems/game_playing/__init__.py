@@ -1,3 +1,5 @@
-__all__ = ["custom_log"]
+"""To initialize the game_playing package."""
 
-from game_playing.tools import custom_log
+__all__ = ["ArgparseLogger", "setup_custom_logger"]
+
+from game_playing.tools.custom_log import ArgparseLogger, setup_custom_logger

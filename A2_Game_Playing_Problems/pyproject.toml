@@ -78,7 +78,7 @@ strict = true
 combine-as-imports  = true
 lines-after-imports = 2
 lines-between-types = 1
-known-first-party   = ["detecting_motion"]
+known-first-party   = ["game_playing"]
 
 [tool.ruff.lint.pycodestyle]
 ignore-overlong-task-comments = true
@@ -113,7 +113,7 @@ exclude = [
 
 [tool.mypy]
 python_version    = "3.12"
-files             = "detecting_motion"
+files             = "game_playing"
 show_error_codes  = true
 strict            = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
