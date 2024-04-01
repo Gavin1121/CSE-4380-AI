@@ -1,0 +1,28 @@
+Evaluation Function for Red-Blue Nim Game
+-----------------------------------------
+
+The evaluation function is designed to score the current state of the Red-Blue Nim game, taking into account the strategy of the game version being played ('standard' or 'misere').
+
+For the 'standard' version:
+    - The primary objective is to avoid being the player who removes the last marble.
+    - Strategies Involved:
+        - It prioritizes reducing the number of marbles in both piles (reduction_score) but heavily penalizes leaving just one or two marbles in any pile (near_loss_penalty).
+        - This is to avoid setting up the opponent for a winning move.
+        - It maintains a balance between the red and blue marble piles (balance_score).
+        - A significant imbalance can allow the opponent to force a win.
+        - The balance is considered less critical when the difference between the piles is three or fewer marbles.
+
+For the 'misere' version:
+    - The objective is the opposite of the standard version; you want to be the player to take the last marble.
+        - The function simply returns the negative absolute difference between the numbers of red and blue marbles.
+        - This encourages a strategy of maintaining balance between the piles, which is effective in the misere version.
+
+Scoring:
+    - reduction_score:
+        - Negative score based on the total number of marbles. More marbles lead to a lower score.
+    - near_loss_penalty:
+        - A large negative score applied if there are only one or two marbles in either pile, to discourage risky states.
+    - balance_score:
+        - Negative score applied if the difference between piles is more than 3, to encourage maintaining a balanced state.
+
+These scores are combined to give the overall evaluation for the current games state.

@@ -1,10 +1,11 @@
 [tool.poetry]
-name        = "game_playing"
-version     = "1.0.0"
-description = ""
-authors     = ["Gavin1121 <gavin.meyer@mavs.uta.edu>"]
-readme      = "README.md"
-packages    = [{ include = "game_playing" }]
+package-mode = false
+name         = "game_playing"
+version      = "1.0.0"
+description  = ""
+authors      = ["Gavin1121 <gavin.meyer@mavs.uta.edu>"]
+readme       = "README.md"
+packages     = [{ include = "game_playing" }]
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -21,7 +22,7 @@ requires      = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-detect_motion = 'detecting_motion.motion_tracker_gui:_main'
+nim = 'game_playing.red_blue_nim:_main'
 
 [tool.black]
 line-length    = 100
