@@ -40,11 +40,11 @@ class ColorLogFormatter(logging.Formatter):
     """
 
     COLORS: ClassVar[dict] = {
-        logging.DEBUG: "\033[0;36m",  # Cyan for DEBUG
-        logging.INFO: "\033[0;32m",  # Green for INFO
-        logging.WARNING: "\033[0;33m",  # Yellow for WARNING
-        logging.ERROR: "\033[0;31m",  # Red for ERROR
-        logging.CRITICAL: "\033[1;31m",  # Bold Red for CRITICAL
+        logging.DEBUG: "\u001b[36;1m",  # Cyan for DEBUG
+        logging.INFO: "\u001b[32;1m",  # Green for INFO
+        logging.WARNING: "\u001b[33;1m",  # Yellow for WARNING
+        logging.ERROR: "\u001b[31;1m",  # Red for ERROR
+        logging.CRITICAL: "\u001b[1m\u001b[31m",  # Bold Red for CRITICAL
     }
 
     def format(self, record: LogRecord) -> str:
@@ -58,18 +58,23 @@ class ColorLogFormatter(logging.Formatter):
         """
         colored_record = logging.Formatter.format(self, record)
         levelno = record.levelno
-        return f"{self.COLORS.get(levelno, '')}{colored_record}\033[0m"  # Reset to default
+        return f"{self.COLORS.get(levelno, '')}{colored_record}\u001b[0m"  # Reset to default
 
 
-def setup_custom_logger(name: str | None = None) -> Logger:
+def setup_custom_logger(log_file: bool = False) -> Logger:
     """Sets up a global logger with custom formatting and a global exception handler."""
-    logger = logging.getLogger(name)
+    logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
 
     handler = logging.StreamHandler()
     formatter = ColorLogFormatter("%(asctime)s - %(levelname)s - %(message)s")
     handler.setFormatter(formatter)
     logger.addHandler(handler)
+
+    if log_file:
+        file_handler = logging.FileHandler("logfile.log")
+        file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+        logger.addHandler(file_handler)
 
     # Global exception handler
     def handle_exception(
