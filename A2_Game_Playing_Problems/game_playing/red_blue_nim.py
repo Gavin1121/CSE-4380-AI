@@ -1,4 +1,7 @@
+"""Red-Blue Nim game implementation with Minimax algorithm and alpha-beta pruning."""
+
 import argparse
+import sys
 
 from logging import Logger
 
@@ -55,19 +58,19 @@ def evaluate_state(game_state: GameState) -> int:
         # Prioritize reducing piles but not emptying them
         reduction_score = -(total_marbles)
 
-        # Heavy penalty for leaving just one marble in a pile
+        # Heavy penalty for leaving just 1 or 2 marbles in a pile
         near_loss_penalty = 0
         if game_state.red_marbles in {1, 2} or game_state.blue_marbles in {1, 2}:
             near_loss_penalty = -500
 
         # Maintain a certain balance between piles to avoid easy wins for the opponent
         balance_score = 0
-        if (
-            abs(game_state.red_marbles - game_state.blue_marbles) > 3
-        ):  # Adjust threshold based on testing
-            balance_score = -30
+        if abs(game_state.red_marbles - game_state.blue_marbles) >= 3:
+            balance_score = -100
 
         return reduction_score + near_loss_penalty + balance_score
+
+    # misere version
     return -abs(game_state.red_marbles - game_state.blue_marbles)
 
 
@@ -91,7 +94,7 @@ def valid_moves(game_state: GameState, version: str) -> list:
     if game_state.blue_marbles >= 1:
         moves.append(("blue", 1))
 
-    # If misère version, invert the order of moves
+    # If misere version, invert the order of moves
     if version == "misere":
         moves.reverse()
 
@@ -134,6 +137,7 @@ def minmax(
             if beta <= alpha:
                 break
         return max_eval, best_move
+
     min_eval = float("inf")
     best_move = None
     for move in possible_moves:
@@ -146,15 +150,19 @@ def minmax(
         beta = min(beta, evaluation)
         if beta <= alpha:
             break
+
     return min_eval, best_move
 
 
-def human_turn() -> tuple[str, int]:
+def human_turn(game_state: GameState) -> tuple[str, int]:
     """Handle the human player's turn, prompting for and validating their move.
 
     Returns:
         tuple[str, int]: The human player's move as a tuple (color, count).
     """
+    print("\u001b[4m---- TOTAL MARBLES ----\u001b[0m \n")
+    print(f"\u001b[31;1mRed Marbles: {game_state.red_marbles}\u001b[0m")
+    print(f"\u001b[34;1mBlue Marbles: {game_state.blue_marbles}\u001b[0m \n")
     color_options: dict[int, str] = {1: "red 2", 2: "blue 2", 3: "red 1", 4: "blue 1"}
     while True:
         print(
@@ -167,6 +175,22 @@ def human_turn() -> tuple[str, int]:
             count = int(count_str)
             return color, count
         print("\u001b[1m\u001b[4m\u001b[31;1mInvalid move. Try again. \u001b[0m \n")
+
+
+def computer_turn(game_state: GameState, move: tuple[str, int]) -> None:
+    """Display the computer's move.
+
+    Arguments:
+        game_state (GameState): The current state of the game.
+        move (tuple[str, int]): The move made by the computer (color, count).
+    """
+    print("\u001b[30;1m==== COMPUTERS LOGIC ====\u001b[0m \n")
+    print("\u001b[30;1m==== TOTAL MARBLES ====\u001b[0m \n")
+    print(f"\u001b[30;1mRed Marbles: {game_state.red_marbles}\u001b[0m")
+    print(f"\u001b[30;1mBlue Marbles: {game_state.blue_marbles}\u001b[0m \n")
+    print("\u001b[30;1m==== COMPUTERS MOVE ====\u001b[0m \n")
+    print(f"\u001b[30;1mColor: {move[0]}\u001b[0m")
+    print(f"\u001b[30;1mNumber of Marbles: {move[1]}\u001b[0m \n")
 
 
 def red_blue_nim(
@@ -185,23 +209,14 @@ def red_blue_nim(
     current_player = first_player
 
     while not game_state.is_game_over():
-        print("\u001b[4m---- TOTAL MARBLES ----\u001b[0m \n")
-        print(f"\u001b[31;1mRed Marbles: {game_state.red_marbles}\u001b[0m")
-        print(f"\u001b[34;1mBlue Marbles: {game_state.blue_marbles}\u001b[0m \n")
-
         if current_player == "computer":
             _, move = minmax(game_state, depth, float("-inf"), float("inf"), True)
-            print("\u001b[4m---- COMPUTERS MOVE ----\u001b[0m \n")
-            if move[0] == "red":
-                print(f"Color: \u001b[31;1m{move[0]}\u001b[0m")
-            else:
-                print(f"Color: \u001b[34;1m{move[0]}\u001b[0m")
-            print(f"Number of Marbles: \u001b[33;1m{move[1]}\u001b[0m \n")
+            computer_turn(game_state, move)
             game_state.execute_move(move)
             current_player = "human"
         else:
-            move = human_turn()
-            print("\u001b[4m---- HUMANS MOVE ----\u001b[0m \n")
+            move = human_turn(game_state)
+            print("\n\u001b[4m---- YOUR MOVE ----\u001b[0m \n")
             if move[0] == "red":
                 print(f"Color: \u001b[31;1m{move[0]}\u001b[0m")
             else:
@@ -217,12 +232,21 @@ def red_blue_nim(
         winner = "Computer" if current_player == "computer" else "Human"
 
     score = 2 * game_state.red_marbles + 3 * game_state.blue_marbles
-    print(
-        f"\u001b[36;1m Game over!\u001b[35;1m {winner}\u001b[36;1m wins with a score of \u001b[35;1m{score}\u001b[0m \n"  # noqa: E501
-    )
+    print("\u001b[4m\u001b[36;1m~~~ Game over! ~~~\u001b[0m \n")
+    print(f"\u001b[31;1mRed Marbles Left: {game_state.red_marbles}\u001b[0m")
+    print(f"\u001b[34;1mBlue Marbles Left: {game_state.blue_marbles}\u001b[0m \n")
+    print(f"\u001b[35;1m{winner}\u001b[36;1m wins with a score of \u001b[35;1m{score}\u001b[0m \n")
 
 
 def _parse_args(logger: Logger) -> argparse.Namespace:
+    """Parse command-line arguments for the Red-Blue Nim game.
+
+    Arguments:
+        logger (Logger): The logger object.
+
+    Returns:
+        argparse.Namespace: The parsed arguments.
+    """
     parser = ArgparseLogger(logger, description="Play Red-Blue Nim.")
     parser.add_argument("num_red", type=int, help="Number of red marbles")
     parser.add_argument("num_blue", type=int, help="Number of blue marbles")
@@ -240,7 +264,9 @@ def _parse_args(logger: Logger) -> argparse.Namespace:
         choices=["computer", "human"],
         help="First player",
     )
-    parser.add_argument("depth", nargs="?", type=int, default=10, help="Depth for search")
+    parser.add_argument(
+        "depth", nargs="?", type=int, default=15, help="Depth for search, must be greater than 0"
+    )
 
     return parser.parse_args()
 
@@ -250,6 +276,10 @@ def main() -> None:
     logger = setup_custom_logger()
 
     args = _parse_args(logger)
+
+    if args.depth < 1:
+        logger.error("Invalid depth argument. Depth must be greater than 0. Please try again. \n")
+        sys.exit(1)
 
     red_blue_nim(args.num_red, args.num_blue, args.version, args.first_player, args.depth)
 
