@@ -1,9 +1,10 @@
 [tool.poetry]
-name        = "find_route"
-version     = "1.0.0"
-description = ""
-authors     = ["Gavin1121 <gavin.meyer@mavs.uta.edu>"]
-readme      = "README.md"
+package-mode = false
+name         = "find_route"
+version      = "1.0.0"
+description  = ""
+authors      = ["Gavin1121 <gavin.meyer@mavs.uta.edu>"]
+readme       = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.12"
