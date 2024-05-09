@@ -8,7 +8,7 @@ python = "^3.12"
 
 [tool.poetry.group.dev.dependencies]
 black            = "^24.3.0"
-ruff             = "^0.3.0"
+ruff             = "^0.4.3"
 flake8           = "^7.0.0"
 mypy             = "^1.8.0"
 flake8-pyproject = "^1.2.3"
@@ -105,8 +105,7 @@ exclude = [
 ]
 
 [tool.mypy]
-python_version    = "3.12"
-show_error_codes  = true
-strict            = true
-enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
-cache_dir         = ".cache/.mypy_cache"
+python_version   = "3.12"
+show_error_codes = true
+strict           = true
+cache_dir        = ".cache/.mypy_cache"
