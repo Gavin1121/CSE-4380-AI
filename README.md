@@ -1,6 +1,6 @@
 # CSE-4380 Artificial Intelligence
 
-Solutions for various AI assignments, implemented in Python.
+Solutions for various AI assignments, implemented in Python
 
 ## Structure
 
@@ -10,7 +10,7 @@ The project is divided into three main directories, each corresponding to a diff
 2. [A2_Game_Playing_Problems](A2_Game_Playing_Problems/)
 3. [A3_Probabilities_and_Bayesian_Networks](A3_Probabilities_and_Bayesian_Networks/)
 
-Each directory contains its own `README.md` file with more specific instructions.
+Each directory contains its own `README.md` file with more specific instructions
 
 ## Getting Started
 
