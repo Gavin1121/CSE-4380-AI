@@ -1,8 +1,41 @@
 """Module to compute the specified probability of the given events in a Bayesian Network"""
 
+import logging
 import sys
 
 from itertools import product
+from types import TracebackType
+from typing import ClassVar
+
+
+class ColorLogFormatter(logging.Formatter):
+    """A custom log formatter that adds color to log levels.
+
+    Attributes:
+        fmt (str): The format string used to format the log message.
+        COLORS (dict): A dictionary mapping log levels to their respective ANSI color codes.
+    """
+
+    COLORS: ClassVar[dict] = {
+        logging.DEBUG: "\033[0;36m",  # Cyan for DEBUG
+        logging.INFO: "\033[0;32m",  # Green for INFO
+        logging.WARNING: "\033[0;33m",  # Yellow for WARNING
+        logging.ERROR: "\033[0;31m",  # Red for ERROR
+        logging.CRITICAL: "\033[1;31m",  # Bold Red for CRITICAL
+    }
+
+    def format(self, record: logging.LogRecord) -> str:
+        """Format the specified record with color.
+
+        Args:
+            record (logging.LogRecord): The log record to be formatted.
+
+        Returns:
+            str: A formatted string with color based on the log level.
+        """
+        colored_record = logging.Formatter.format(self, record)
+        levelno = record.levelno
+        return f"{self.COLORS.get(levelno, '')}{colored_record}\033[0m"  # Reset to default
 
 
 class BayesianNetwork:
@@ -46,6 +79,29 @@ class BayesianNetwork:
         p_j_given_a = self.p_j_a[a] if j else 1 - self.p_j_a[a]
         p_m_given_a = self.p_m_a[a] if m else 1 - self.p_m_a[a]
         return p_b * p_e * p_a_given_b_e * p_j_given_a * p_m_given_a
+
+
+def _setup_custom_logger(name: str | None = None) -> logging.Logger:
+    """Sets up a global logger with custom formatting and a global exception handler."""
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.DEBUG)
+
+    handler = logging.StreamHandler()
+    formatter = ColorLogFormatter("%(asctime)s - %(levelname)s - %(message)s")
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+
+    # Global exception handler
+    def handle_exception(
+        exc_type: type[BaseException], exc_value: BaseException, exc_traceback: TracebackType
+    ) -> None:
+        if issubclass(exc_type, KeyboardInterrupt):
+            sys.__excepthook__(exc_type, exc_value, exc_traceback)
+            return
+        logger.critical(f"{exc_type}", exc_info=(exc_type, exc_value, exc_traceback))
+
+    sys.excepthook = handle_exception
+    return logger
 
 
 def calculate_specified_probability(
@@ -106,13 +162,12 @@ def _parse_arguments(args: list[str]) -> tuple[dict[str, bool], dict[str, bool]]
         args: List of command line arguments
 
     Returns:
-        tuple[dict[str, bool], dict[str, bool]]: Tuple containing two dictionaries
-        representing the events and their states
-    """
+        tuple[dict[str, bool], dict[str, bool]]: Tuple containing two dictionaries representing the events and their states
+    """  # noqa: E501
     if "given" in args:
         index = args.index("given")
         events_c1 = args[:index]
-        events_c2 = args[index + 1 :]
+        events_c2 = args[index + 1 :]  # noqa: E203, RUF100
     else:
         events_c1 = args
         events_c2 = []
@@ -124,9 +179,14 @@ def _parse_arguments(args: list[str]) -> tuple[dict[str, bool], dict[str, bool]]
 
 def main() -> None:
     """Main function to compute the specified probability of the given events"""
+    _setup_custom_logger()
     if len(sys.argv) < 2 or len(sys.argv) > 7:
-        print(
-            "Usage: python bnet.py <events up to 5><state 't' or 'f'> [optional: 'given'] <events up to 4><state 't' or 'f'>"
+        logging.critical(
+            "Invalid number of arguments\n"
+            "Usage: python bnet.py <event><state> [optional: 'given'] <event><state>\n"
+            "Events: 'B' - Burglary, 'E' - Earthquake, 'A' - Alarm, 'J' - JohnCalls, 'M' - MaryCalls\n"  # noqa: E501
+            "States: 't' - True, 'f' - False\n"
+            "Example: python bnet.py Bt At Jt given Mt"
         )
         return
     args = sys.argv[1:]
