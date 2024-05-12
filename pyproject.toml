@@ -1,6 +1,6 @@
 [tool.poetry]
 package-mode = false
-name         = "probabilities and bayesian networks"
+name         = "artificial intelligence"
 authors      = ["Gavin1121 <gavin.meyer@mavs.uta.edu>"]
 
 [tool.poetry.dependencies]
@@ -56,8 +56,10 @@ extend-ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"task1/compute_a_posteriori.py" = ["INP001"]
-"task2/bnet.py"                 = ["INP001"]
+"A3_Probabilities_and_Bayesian_Networks/task1/compute_a_posteriori.py" = [
+    "INP001",
+]
+"A3_Probabilities_and_Bayesian_Networks/task2/bnet.py" = ["INP001"]
 
 [tool.ruff.lint.flake8-annotations]
 suppress-dummy-args = true

@@ -1,6 +1,3 @@
-Name: Gavin Meyer
-UTA ID: 1001837590
-
 Programming Language: Python 3.12.1
 
 Code Structure:

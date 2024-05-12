@@ -67,7 +67,7 @@ Probability that the next candy we pick will be L, given Q: ???
 
 ## Task 2 - Bayesian Networks
 
-![alt text](figures/burglary.gif)
+![alt text](../figures/burglary.gif)
 
 **Figure 1**: A Bayesian network establishing relations between events on the burglary-earthquake-alarmdomain, together with complete specifications of all probability distributions
 

@@ -1,6 +1,6 @@
 # Assignment 1 - Uninformed Search and Informed Search
 
-![Input1.txt Route Graphic](README_imgs/input1_graphic.gif)
+![alt text](../figures/input1_graphic.gif)
 
 ## Programming Language
 
